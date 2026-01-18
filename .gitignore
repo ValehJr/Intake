@@ -1,0 +1,26 @@
+# Xcode
+*.xcworkspace
+*.xcuserdata
+*.moved-aside
+*.xcuserstate
+*.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+
+# Swift Package Manager
+.build/
+Packages/
+.swiftpm/
+
+# CocoaPods
+Pods/
+
+# Derived data
+DerivedData/
+build/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Secrets
+Secret
+Secret.*
