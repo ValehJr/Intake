@@ -25,7 +25,7 @@ struct IntakeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(vm: MainViewModel())
         }
         .modelContainer(sharedModelContainer)
     }

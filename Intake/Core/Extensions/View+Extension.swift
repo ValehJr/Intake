@@ -17,4 +17,16 @@ extension View {
             .font(.system(size: size,weight: weight))
             .foregroundColor(foregroundColor)
     }
+    
+    func customTextField(
+        text: String,
+        placeholder: String,
+    ) -> some View {
+        modifier(
+            TextFieldViewModifier(
+                text: text,
+                placeholder: placeholder
+            )
+        )
+    }
 }

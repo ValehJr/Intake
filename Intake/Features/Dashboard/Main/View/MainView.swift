@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
 
+    @StateObject var vm: MainViewModel
+    
     var body: some View {
         ZStack {
             Color.backgroundPrimary
@@ -20,12 +22,12 @@ struct MainView: View {
     }
     
     var titleView: some View {
-        Text("Welcome")
+        Text("Welcome \(vm.user.name)")
             .appFont(weight: .semibold, size: 18,foregroundColor: .textPrimary)
             .frame(maxWidth: .infinity,alignment: .leading)
     }
 }
 
 #Preview {
-    MainView()
+    MainView(vm: MainViewModel())
 }
