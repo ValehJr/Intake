@@ -21,11 +21,13 @@ extension View {
     func customTextField(
         text: String,
         placeholder: String,
+        isFocused: Bool
     ) -> some View {
         modifier(
             TextFieldViewModifier(
                 text: text,
-                placeholder: placeholder
+                placeholder: placeholder,
+                isFocused: isFocused
             )
         )
     }
