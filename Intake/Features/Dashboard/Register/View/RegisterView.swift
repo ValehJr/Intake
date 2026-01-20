@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RegisterView: View {
-    @State var name = ""
-    @State var email = ""
     @FocusState private var isFocusedName: Bool
     @FocusState private var isFocusedEmail: Bool
+
+    @StateObject private var vm: RegisterViewModel
+
+    init(context: ModelContext) {
+        _vm = StateObject(wrappedValue: RegisterViewModel(context: context))
+    }
     
     var body: some View {
         ZStack {
@@ -46,35 +51,40 @@ struct RegisterView: View {
     }
 
     var nameField: some View {
-        TextField("", text: $name)
+        TextField("", text: $vm.name)
             .textContentType(.name)
             .autocorrectionDisabled()
             .focused($isFocusedName)
-            .customTextField(text: name, placeholder: "Name",isFocused: isFocusedName)
+            .customTextField(text: vm.name, placeholder: "Name",isFocused: isFocusedName)
     }
 
     var emailField: some View {
-        TextField("", text: $email)
+        TextField("", text: $vm.email)
             .textContentType(.emailAddress)
             .keyboardType(.emailAddress)
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
             .focused($isFocusedEmail)
-            .customTextField(text: email, placeholder: "Email",isFocused: isFocusedEmail)
+            .customTextField(text: vm.email, placeholder: "Email",isFocused: isFocusedEmail)
     }
 
     var submitButton: some View {
-        Button(action: {}) {
+        Button {
+            vm.userRegister()
+        } label: {
             Text("Submit")
                 .appFont(weight: .medium, size: 18,foregroundColor: .backgroundPrimary)
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(Color.accentPrimary)
+                .background(vm.isSubmitButtonActive ? Color.accentPrimary : Color.accentPrimary.opacity(0.6))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
         }
+        .disabled(!vm.isSubmitButtonActive)
+        
     }
 }
 
 #Preview {
-    RegisterView()
+    @Environment(\.modelContext) var modelContext
+    RegisterView(context: modelContext)
 }
