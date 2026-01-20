@@ -12,7 +12,8 @@ import SwiftData
 struct IntakeApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            UserEntity.self
+            UserEntity.self,
+            SmokingEvent.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +26,7 @@ struct IntakeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RegisterView(context: sharedModelContainer.mainContext)
+            RootView()
         }
         .modelContainer(sharedModelContainer)
     }

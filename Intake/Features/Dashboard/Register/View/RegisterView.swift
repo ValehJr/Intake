@@ -72,7 +72,7 @@ struct RegisterView: View {
         Button {
             vm.userRegister()
         } label: {
-            Text("Submit")
+            Text("Register")
                 .appFont(weight: .medium, size: 18,foregroundColor: .backgroundPrimary)
                 .frame(maxWidth: .infinity)
                 .padding()
