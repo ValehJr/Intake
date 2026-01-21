@@ -38,10 +38,9 @@ final class MainViewModel: ObservableObject {
         user.smokingEvents.append(event)
     }
     
-    func printSmokingEvents() {
-        for event in user.smokingEvents {
-            print(event.timestamp)
+    func eventsForHour(_ hourDate: Date) -> [SmokingEvent] {
+        user.smokingEvents.filter { event in
+            Calendar.current.isDate(event.timestamp, equalTo: hourDate, toGranularity: .hour)
         }
-        print(user.smokingEvents.count)
     }
 }

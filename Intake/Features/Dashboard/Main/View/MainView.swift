@@ -21,8 +21,10 @@ struct MainView: View {
                     .padding(.vertical)
                 
                 recordsView
-                HStack(spacing: 24) {
+                HStack(spacing: 0) {
                     timeView
+                    Spacer()
+                    
                     plusButton
                 }
                 .padding(.vertical,24)
@@ -52,9 +54,25 @@ struct MainView: View {
     }
     
     var timeView: some View {
-        HStack(spacing: 24) {
+        HStack(alignment:.top,spacing: 24) {
             ForEach(vm.hourRange, id: \.self) { date in
-                Text(formattedTime(for: date))
+                VStack(alignment:.center,spacing: 4) {
+                    Text(formattedTime(for: date))
+                    
+                    let count = vm.eventsForHour(date).count
+                    if count > 0 {
+                        HStack(spacing: 4) {
+                            Text("\(count)")
+                                .appFont(weight: .medium, size: 12,foregroundColor: .textPrimary)
+                            Image("cigarette-ic")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 18, height: 18)
+                                .foregroundStyle(.textPrimary)
+                        }
+                    }
+                    
+                }
             }
         }
         .padding()
@@ -88,7 +106,6 @@ struct MainView: View {
     var plusButton: some View {
         Button {
             vm.addSmokingEvent()
-            vm.printSmokingEvents()
         } label: {
             Image(systemName: "plus.circle.fill")
                 .appFont(weight: .medium, size: 32,foregroundColor: .textSecondary)
@@ -96,51 +113,7 @@ struct MainView: View {
     }
     
     var calendarView: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            weekdayHeader
-            
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 15) {
-                ForEach(vm.dayRange, id: \.self) { date in
-                    dayCell(for: date)
-                }
-            }
-            .padding()
-            .background {
-                RoundedRectangle(cornerRadius: 18)
-                    .stroke(Color.textSecondary, lineWidth: 2)
-            }
-        }
-    }
-    
-    var weekdayHeader: some View {
-        HStack {
-            ForEach(Calendar.current.shortWeekdaySymbols, id: \.self) { symbol in
-                Text(symbol)
-                    .appFont(weight: .bold, size: 14, foregroundColor: .textSecondary)
-                    .frame(maxWidth: .infinity)
-            }
-        }
-        .padding(.horizontal)
-    }
-    
-    @ViewBuilder
-    func dayCell(for date: Date) -> some View {
-        let isToday = Calendar.current.isDateInToday(date)
-        let isFuture = date > Date.now && !isToday
-        
-        Text(date.formatted(.dateTime.day()))
-            .appFont(
-                weight: isToday ? .bold : .medium,
-                size: 16,
-                foregroundColor: isToday ? .white : (isFuture ? .textSecondary : .textPrimary)
-            )
-            .frame(width: 35, height: 35)
-            .background {
-                if isToday {
-                    Circle()
-                        .fill(Color.utilityMuted)
-                }
-            }
+        CalendarView(range: vm.dayRange)
     }
 }
 
