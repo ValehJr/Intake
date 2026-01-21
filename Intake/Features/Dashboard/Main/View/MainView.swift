@@ -48,7 +48,11 @@ struct MainView: View {
             
             Text("•")
             
-            Text("Record of the week: 1")
+            if !vm.hasSevenDaysOfData {
+                Text("Average will be available after 7 days")
+            } else {
+                Text("7 days avg: \(String(format: "%.1f", vm.weeklyAverage))")
+            }
         }
         .appFont(weight: .medium, size: 16, foregroundColor: .textPrimary)
     }

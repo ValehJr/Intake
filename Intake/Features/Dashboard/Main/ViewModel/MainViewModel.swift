@@ -28,6 +28,10 @@ final class MainViewModel: ObservableObject {
         }
     }
     
+    var weeklyAverage: Double {
+        calculateSevenDayAverage()
+    }
+    
     init(context: ModelContext, user: UserEntity) {
         self.context = context
         self.user = user
@@ -41,6 +45,45 @@ final class MainViewModel: ObservableObject {
     func eventsForHour(_ hourDate: Date) -> [SmokingEvent] {
         user.smokingEvents.filter { event in
             Calendar.current.isDate(event.timestamp, equalTo: hourDate, toGranularity: .hour)
+        }
+    }
+}
+
+extension MainViewModel {
+    var hasSevenDaysOfData: Bool {
+        guard let firstEvent = user.smokingEvents.min(by: { $0.timestamp < $1.timestamp }) else {
+            return false
+        }
+        
+        let calendar = Calendar.current
+        let startOfToday = calendar.startOfDay(for: Date())
+        let startOfFirstDay = calendar.startOfDay(for: firstEvent.timestamp)
+        
+        let components = calendar.dateComponents([.day], from: startOfFirstDay, to: startOfToday)
+        
+        return (components.day ?? 0) >= 7
+    }
+    
+    func calculateSevenDayAverage() -> Double {
+        let now = Date()
+        let calendar = Calendar.current
+        
+        guard let sevenDaysAgo = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: now)) else {
+            return 0.0
+        }
+        
+        let predicate = #Predicate<SmokingEvent> { event in
+            event.timestamp >= sevenDaysAgo && event.timestamp <= now
+        }
+        
+        let descriptor = FetchDescriptor<SmokingEvent>(predicate: predicate)
+        
+        do {
+            let count = try context.fetchCount(descriptor)
+            return Double(count) / 7.0
+        } catch {
+            print("Fetch failed: \(error)")
+            return 0.0
         }
     }
 }
