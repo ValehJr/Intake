@@ -117,7 +117,7 @@ struct MainView: View {
     }
     
     var calendarView: some View {
-        CalendarView(range: vm.dayRange)
+        CalendarView(range: vm.dayRange,counts: vm.smokingCounts)
     }
 }
 

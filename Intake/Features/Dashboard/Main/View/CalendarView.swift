@@ -10,6 +10,7 @@ import SwiftUI
 struct CalendarView: View {
     
     let range: [Date]
+    let counts: [Date: Int]
     
     var body: some View {
         calendarView
@@ -48,18 +49,37 @@ struct CalendarView: View {
         let isToday = Calendar.current.isDateInToday(date)
         let isFuture = date > Date.now && !isToday
         
-        Text(date.formatted(.dateTime.day()))
-            .appFont(
-                weight: isToday ? .bold : .medium,
-                size: 16,
-                foregroundColor: isToday ? .white : (isFuture ? .textSecondary : .textPrimary)
-            )
-            .frame(width: 35, height: 35)
-            .background {
-                if isToday {
-                    Circle()
-                        .fill(Color.utilityMuted)
+        let dayKey = Calendar.current.startOfDay(for: date)
+        let count = counts[dayKey] ?? 0
+        
+        VStack(spacing: 4) {
+            Text(date.formatted(.dateTime.day()))
+                .appFont(
+                    weight: isToday ? .bold : .medium,
+                    size: 16,
+                    foregroundColor: isToday ? .white : (isFuture ? .textSecondary : .textPrimary)
+                )
+                .frame(width: 35, height: 35)
+                .background {
+                    if isToday {
+                        Circle()
+                            .fill(Color.utilityMuted)
+                    }
                 }
+            
+            if count > 0 {
+                HStack(spacing: 4) {
+                    Text("\(count)")
+                        .appFont(weight: .medium, size: 12,foregroundColor: .textPrimary)
+                    Image("cigarette-ic")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18, height: 18)
+                        .foregroundStyle(.textPrimary)
+                }
+            } else {
+                Spacer().frame(height: 18)
             }
+        }
     }
 }

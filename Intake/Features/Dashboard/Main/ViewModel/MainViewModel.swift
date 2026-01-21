@@ -12,6 +12,8 @@ import SwiftData
 @MainActor
 final class MainViewModel: ObservableObject {
     @Published var user: UserEntity
+    @Published var smokingCounts: [Date: Int] = [:]
+    
     let context: ModelContext
     
     var hourRange: [Date] {
@@ -35,11 +37,22 @@ final class MainViewModel: ObservableObject {
     init(context: ModelContext, user: UserEntity) {
         self.context = context
         self.user = user
+        refreshSmokingCounts()
+    }
+    
+    func refreshSmokingCounts() {
+        let grouped = Dictionary(grouping: user.smokingEvents) { event in
+            Calendar.current.startOfDay(for: event.timestamp)
+        }
+        self.smokingCounts = grouped.mapValues { $0.count }
     }
     
     func addSmokingEvent() {
         let event = SmokingEvent()
         user.smokingEvents.append(event)
+        
+        let today = Calendar.current.startOfDay(for: .now)
+        smokingCounts[today, default: 0] += 1
     }
     
     func eventsForHour(_ hourDate: Date) -> [SmokingEvent] {
