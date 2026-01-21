@@ -11,6 +11,7 @@ import SwiftUI
 @Model
 final class SmokingEvent {
     var timestamp: Date
+    var sigarettesNumber: Int?
 
     init(timestamp: Date = .now) {
         self.timestamp = timestamp

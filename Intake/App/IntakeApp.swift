@@ -10,6 +10,7 @@ import SwiftData
 
 @main
 struct IntakeApp: App {
+    @AppStorage("isDarkMode") private var isDarkMode = false
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             UserEntity.self,
