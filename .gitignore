@@ -1,26 +1,57 @@
+# =====================
+# macOS
+# =====================
+.DS_Store
+
+# =====================
 # Xcode
+# =====================
 *.xcworkspace
-*.xcuserdata
-*.moved-aside
-*.xcuserstate
 *.xcodeproj/project.xcworkspace/contents.xcworkspacedata
-
-# Swift Package Manager
-.build/
-Packages/
-.swiftpm/
-
-# CocoaPods
-Pods/
+*.xcuserstate
+*.xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
 
 # Derived data
 DerivedData/
-build/
-*.hmap
-*.ipa
-*.dSYM.zip
-*.dSYM
 
-# Secrets
+# Build products
+build/
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.hmap
+
+# =====================
+# Swift Package Manager
+# =====================
+.build/
+Packages/
+.swiftpm/
+Package.resolved
+
+# =====================
+# CocoaPods
+# =====================
+Pods/
+
+# =====================
+# Carthage
+# =====================
+Carthage/Build/
+
+# =====================
+# Fastlane
+# =====================
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# =====================
+# Secrets / Private Files
+# =====================
 Secret
 Secret.*
