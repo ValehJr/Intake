@@ -44,7 +44,7 @@ struct MainView: View {
     
     var recordsView: some View {
         HStack(spacing: 8) {
-            Text("Today's count: \(vm.user.smokingEvents.count)")
+            Text("Today's count: \(vm.countForToday())")
             
             Text("•")
             

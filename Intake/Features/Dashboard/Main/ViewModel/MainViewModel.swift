@@ -60,6 +60,11 @@ final class MainViewModel: ObservableObject {
             Calendar.current.isDate(event.timestamp, equalTo: hourDate, toGranularity: .hour)
         }
     }
+    
+    func countForToday() -> Int {
+        let today = Calendar.current.startOfDay(for: Date())
+        return smokingCounts[today] ?? 0
+    }
 }
 
 extension MainViewModel {
