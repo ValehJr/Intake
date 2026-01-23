@@ -10,9 +10,27 @@
 		1DF6BCE42F1CD8D600C3E6BA /* Intake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Intake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1D60E8C12F23F67100B1965A /* Exceptions for "Intake" folder in "Intake" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Screenshots/LaunchScreenDark.png,
+				Screenshots/LaunchScreenLight.png,
+				Screenshots/MainScreenDark.png,
+				Screenshots/MainScreenLight.png,
+				Screenshots/RegisterScreenDak.png,
+				Screenshots/RegisterScreenLight.png,
+			);
+			target = 1DF6BCE32F1CD8D600C3E6BA /* Intake */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1DF6BCE62F1CD8D600C3E6BA /* Intake */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1D60E8C12F23F67100B1965A /* Exceptions for "Intake" folder in "Intake" target */,
+			);
 			path = Intake;
 			sourceTree = "<group>";
 		};
