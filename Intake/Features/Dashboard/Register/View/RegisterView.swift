@@ -11,10 +11,13 @@ import SwiftData
 struct RegisterView: View {
     @FocusState private var isFocusedName: Bool
     @FocusState private var isFocusedEmail: Bool
-
+    
     @StateObject private var vm: RegisterViewModel
-
-    init(context: ModelContext) {
+    
+    let onRegistrationComplete: (UserEntity) -> Void
+    
+    init(context: ModelContext, onRegistrationComplete: @escaping (UserEntity) -> Void) {
+        self.onRegistrationComplete = onRegistrationComplete
         _vm = StateObject(wrappedValue: RegisterViewModel(context: context))
     }
     
@@ -22,10 +25,10 @@ struct RegisterView: View {
         ZStack {
             Color.backgroundPrimary
                 .ignoresSafeArea()
-
+            
             VStack(spacing: 24) {
                 header
-
+                
                 VStack(spacing: 16) {
                     nameField
                     emailField
@@ -33,23 +36,32 @@ struct RegisterView: View {
                 
                 Spacer()
                 submitButton
-
+                
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 32)
         }
+        .onChange(of: vm.user) { oldValue, newValue in
+            if let registeredUser = newValue {
+                onRegistrationComplete(registeredUser)
+            }
+        }
+        .onTapGesture {
+            isFocusedName = false
+            isFocusedEmail = false
+        }
     }
-
+    
     var header: some View {
         VStack(spacing: 8) {
             Text("Welcome to Intake")
                 .appFont(weight: .semibold, size: 28,foregroundColor: .textPrimary)
-
+            
             Text("Create your account to continue")
                 .appFont(weight: .medium, size: 18,foregroundColor: .textSecondary)
         }
     }
-
+    
     var nameField: some View {
         TextField("", text: $vm.name)
             .textContentType(.name)
@@ -57,7 +69,7 @@ struct RegisterView: View {
             .focused($isFocusedName)
             .customTextField(text: vm.name, placeholder: "Name",isFocused: isFocusedName)
     }
-
+    
     var emailField: some View {
         TextField("", text: $vm.email)
             .textContentType(.emailAddress)
@@ -67,7 +79,7 @@ struct RegisterView: View {
             .focused($isFocusedEmail)
             .customTextField(text: vm.email, placeholder: "Email",isFocused: isFocusedEmail)
     }
-
+    
     var submitButton: some View {
         Button {
             vm.userRegister()
@@ -82,9 +94,4 @@ struct RegisterView: View {
         .disabled(!vm.isSubmitButtonActive)
         
     }
-}
-
-#Preview {
-    @Environment(\.modelContext) var modelContext
-    RegisterView(context: modelContext)
 }

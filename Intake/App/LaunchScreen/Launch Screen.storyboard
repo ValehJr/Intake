@@ -16,12 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="A29-hW-bAT">
+                            <imageView autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="A29-hW-bAT">
                                 <rect key="frame" x="72.666666666666686" y="327" width="248" height="248"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" name="backgroundPrimary"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="A29-hW-bAT" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.631043" id="SZb-Nm-Twa"/>
                             <constraint firstItem="A29-hW-bAT" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.29108" id="VcJ-dw-fsv"/>

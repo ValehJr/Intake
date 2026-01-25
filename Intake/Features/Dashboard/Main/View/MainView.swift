@@ -11,6 +11,7 @@ import SwiftUI
 struct MainView: View {
     @StateObject var vm: MainViewModel
     @AppStorage("isDarkMode") private var isDarkMode = false
+    @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
         ZStack {
@@ -34,6 +35,15 @@ struct MainView: View {
             }
             .padding()
         }
+        .onAppear {
+            vm.reloadUserData()
+        }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            if newPhase == .active {
+                vm.reloadUserData()
+            }
+        }
+        
     }
     
     var titleView: some View {

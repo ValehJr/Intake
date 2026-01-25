@@ -9,14 +9,29 @@ import SwiftUI
 import SwiftData
 
 struct RootView: View {
-    @Query private var users: [UserEntity]
+    @State private var user: UserEntity?
     @Environment(\.modelContext) private var context
 
     var body: some View {
-        if let user = users.first {
-            MainView(vm: MainViewModel(context: context,user: user))
-        } else {
-            RegisterView(context: context)
+        Group {
+            if let user = user {
+                MainView(vm: MainViewModel(context: context, user: user))
+            } else {
+                RegisterView(context: context, onRegistrationComplete: { registeredUser in
+                    self.user = registeredUser
+                })
+            }
+        }
+        .onAppear {
+            loadUser()
+        }
+    }
+    
+    private func loadUser() {
+        do {
+            user = try DataController.shared.getCurrentUser(context: context)
+        } catch {
+            print("❌ Error loading user: \(error)")
         }
     }
 }

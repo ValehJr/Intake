@@ -28,13 +28,14 @@ class RegisterViewModel: ObservableObject {
     func userRegister() {
         guard isSubmitButtonActive else { return }
         
-        let user = UserEntity(name: name, email: email)
-        context.insert(user)
+        let newUser = UserEntity(name: name, email: email)
+        context.insert(newUser)
         
         do {
             try context.save()
+            self.user = newUser
         } catch {
-            fatalError("Failed to save user: \(error)")
+            print("❌ Failed to save user: \(error)")
         }
     }
 }

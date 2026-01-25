@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftData
+import WidgetKit
 
 @MainActor
 final class MainViewModel: ObservableObject {
@@ -47,13 +48,35 @@ final class MainViewModel: ObservableObject {
         self.smokingCounts = grouped.mapValues { $0.count }
     }
     
+    func reloadUserData() {
+            do {
+                let descriptor = FetchDescriptor<UserEntity>()
+                let users = try context.fetch(descriptor)
+                
+                if let freshUser = users.first {
+                    self.user = freshUser
+                    refreshSmokingCounts()
+                }
+            } catch {
+                print("❌ Error reloading user: \(error)")
+            }
+        }
+    
+    
     func addSmokingEvent() {
         let event = SmokingEvent()
         user.smokingEvents.append(event)
-        
-        let today = Calendar.current.startOfDay(for: .now)
-        smokingCounts[today, default: 0] += 1
+
+        do {
+            try context.save()
+        } catch {
+            print("Save failed: \(error)")
+        }
+
+        refreshSmokingCounts()
+        updateWidget()
     }
+
     
     func eventsForHour(_ hourDate: Date) -> [SmokingEvent] {
         user.smokingEvents.filter { event in
@@ -103,5 +126,11 @@ extension MainViewModel {
             print("Fetch failed: \(error)")
             return 0.0
         }
+    }
+}
+
+extension MainViewModel {
+    func updateWidget() {
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }

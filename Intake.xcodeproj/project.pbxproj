@@ -6,11 +6,71 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1D2DE0672F251E3600FFDF24 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2DE0662F251E3600FFDF24 /* WidgetKit.framework */; };
+		1D2DE0692F251E3600FFDF24 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2DE0682F251E3600FFDF24 /* SwiftUI.framework */; };
+		1D2DE0742F251E3700FFDF24 /* LockScreen WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1D2DE0642F251E3600FFDF24 /* LockScreen WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1D2DE0722F251E3700FFDF24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1DF6BCDC2F1CD8D600C3E6BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D2DE0632F251E3600FFDF24;
+			remoteInfo = "LockScreen WidgetsExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1D60E8E12F24D73500B1965A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1D2DE0742F251E3700FFDF24 /* LockScreen WidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1D2DE0642F251E3600FFDF24 /* LockScreen WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "LockScreen WidgetsExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D2DE0662F251E3600FFDF24 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		1D2DE0682F251E3600FFDF24 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		1D833E442F255BD20035B70B /* LockScreen WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "LockScreen WidgetsExtension.entitlements"; sourceTree = "<group>"; };
 		1DF6BCE42F1CD8D600C3E6BA /* Intake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Intake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1D2DE0782F251E3700FFDF24 /* Exceptions for "LockScreen Widgets" folder in "LockScreen WidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1D2DE0632F251E3600FFDF24 /* LockScreen WidgetsExtension */;
+		};
+		1D2DE07D2F252A6400FFDF24 /* Exceptions for "Intake" folder in "LockScreen WidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets/Assets.xcassets,
+				Core/Customs/TextFieldModifier.swift,
+				"Core/Extensions/View+Extension.swift",
+				Core/Persistence/DataController.swift,
+				Core/Persistence/SmokingEvent.swift,
+				Core/Persistence/UserEntity.swift,
+			);
+			target = 1D2DE0632F251E3600FFDF24 /* LockScreen WidgetsExtension */;
+		};
+		1D2DE0852F252BEF00FFDF24 /* Exceptions for "LockScreen Widgets" folder in "Intake" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				LogSmokeIntent.swift,
+			);
+			target = 1DF6BCE32F1CD8D600C3E6BA /* Intake */;
+		};
 		1D60E8C12F23F67100B1965A /* Exceptions for "Intake" folder in "Intake" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -26,10 +86,20 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		1D2DE06A2F251E3600FFDF24 /* LockScreen Widgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1D2DE0852F252BEF00FFDF24 /* Exceptions for "LockScreen Widgets" folder in "Intake" target */,
+				1D2DE0782F251E3700FFDF24 /* Exceptions for "LockScreen Widgets" folder in "LockScreen WidgetsExtension" target */,
+			);
+			path = "LockScreen Widgets";
+			sourceTree = "<group>";
+		};
 		1DF6BCE62F1CD8D600C3E6BA /* Intake */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				1D60E8C12F23F67100B1965A /* Exceptions for "Intake" folder in "Intake" target */,
+				1D2DE07D2F252A6400FFDF24 /* Exceptions for "Intake" folder in "LockScreen WidgetsExtension" target */,
 			);
 			path = Intake;
 			sourceTree = "<group>";
@@ -37,6 +107,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1D2DE0612F251E3600FFDF24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D2DE0692F251E3600FFDF24 /* SwiftUI.framework in Frameworks */,
+				1D2DE0672F251E3600FFDF24 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1DF6BCE12F1CD8D600C3E6BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,10 +126,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D2DE0652F251E3600FFDF24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D2DE0662F251E3600FFDF24 /* WidgetKit.framework */,
+				1D2DE0682F251E3600FFDF24 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1DF6BCDB2F1CD8D600C3E6BA = {
 			isa = PBXGroup;
 			children = (
+				1D833E442F255BD20035B70B /* LockScreen WidgetsExtension.entitlements */,
 				1DF6BCE62F1CD8D600C3E6BA /* Intake */,
+				1D2DE06A2F251E3600FFDF24 /* LockScreen Widgets */,
+				1D2DE0652F251E3600FFDF24 /* Frameworks */,
 				1DF6BCE52F1CD8D600C3E6BA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				1DF6BCE42F1CD8D600C3E6BA /* Intake.app */,
+				1D2DE0642F251E3600FFDF24 /* LockScreen WidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,6 +158,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1D2DE0632F251E3600FFDF24 /* LockScreen WidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D2DE0752F251E3700FFDF24 /* Build configuration list for PBXNativeTarget "LockScreen WidgetsExtension" */;
+			buildPhases = (
+				1D2DE0602F251E3600FFDF24 /* Sources */,
+				1D2DE0612F251E3600FFDF24 /* Frameworks */,
+				1D2DE0622F251E3600FFDF24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1D2DE06A2F251E3600FFDF24 /* LockScreen Widgets */,
+			);
+			name = "LockScreen WidgetsExtension";
+			packageProductDependencies = (
+			);
+			productName = "LockScreen WidgetsExtension";
+			productReference = 1D2DE0642F251E3600FFDF24 /* LockScreen WidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		1DF6BCE32F1CD8D600C3E6BA /* Intake */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DF6BCF12F1CD8D600C3E6BA /* Build configuration list for PBXNativeTarget "Intake" */;
@@ -73,10 +187,12 @@
 				1DF6BCE02F1CD8D600C3E6BA /* Sources */,
 				1DF6BCE12F1CD8D600C3E6BA /* Frameworks */,
 				1DF6BCE22F1CD8D600C3E6BA /* Resources */,
+				1D60E8E12F24D73500B1965A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1D2DE0732F251E3700FFDF24 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				1DF6BCE62F1CD8D600C3E6BA /* Intake */,
@@ -98,6 +214,9 @@
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
+					1D2DE0632F251E3600FFDF24 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
 					1DF6BCE32F1CD8D600C3E6BA = {
 						CreatedOnToolsVersion = 26.1.1;
 					};
@@ -118,11 +237,19 @@
 			projectRoot = "";
 			targets = (
 				1DF6BCE32F1CD8D600C3E6BA /* Intake */,
+				1D2DE0632F251E3600FFDF24 /* LockScreen WidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1D2DE0622F251E3600FFDF24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1DF6BCE22F1CD8D600C3E6BA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -133,6 +260,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1D2DE0602F251E3600FFDF24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1DF6BCE02F1CD8D600C3E6BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -142,7 +276,77 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		1D2DE0732F251E3700FFDF24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D2DE0632F251E3600FFDF24 /* LockScreen WidgetsExtension */;
+			targetProxy = 1D2DE0722F251E3700FFDF24 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		1D2DE0762F251E3700FFDF24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "LockScreen WidgetsExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W8RLJ8MS39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LockScreen Widgets/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LockScreen Widgets";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.valehjr.Intake.LockScreen-Widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1D2DE0772F251E3700FFDF24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "LockScreen WidgetsExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W8RLJ8MS39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LockScreen Widgets/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LockScreen Widgets";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.valehjr.Intake.LockScreen-Widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		1DF6BCEF2F1CD8D600C3E6BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -269,6 +473,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Intake/Intake.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W8RLJ8MS39;
@@ -301,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Intake/Intake.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W8RLJ8MS39;
@@ -331,6 +537,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1D2DE0752F251E3700FFDF24 /* Build configuration list for PBXNativeTarget "LockScreen WidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D2DE0762F251E3700FFDF24 /* Debug */,
+				1D2DE0772F251E3700FFDF24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1DF6BCDF2F1CD8D600C3E6BA /* Build configuration list for PBXProject "Intake" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

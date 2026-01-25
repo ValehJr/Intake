@@ -11,24 +11,12 @@ import SwiftData
 @main
 struct IntakeApp: App {
     @AppStorage("isDarkMode") private var isDarkMode = false
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            UserEntity.self,
-            SmokingEvent.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
+    let dataController = DataController.shared
 
     var body: some Scene {
         WindowGroup {
             RootView()
+                .modelContainer(dataController.container)
         }
-        .modelContainer(sharedModelContainer)
     }
 }
