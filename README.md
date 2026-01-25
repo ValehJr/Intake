@@ -22,6 +22,7 @@ No accounts, no cloud sync, no tracking.
 - **Calendar view** to inspect historical daily usage
 - **Light & Dark mode** support
 - **Offline-first & privacy-safe** (local persistence only)
+- **Lock Screen widget** for at-a-glance cigarette count tracking
 
 ---
 
@@ -51,6 +52,16 @@ The project follows a feature-oriented MVVM architecture:
   - Declarative SwiftUI views with unidirectional data flow
 
 This separation keeps UI, business logic, and persistence concerns isolated and easy to evolve.
+
+---
+
+## Lock Screen Widget
+
+The app includes a **Lock Screen widget** built with **WidgetKit**, allowing users to view their current smoking progress without opening the app.
+
+- Supports Lock Screen widget families
+- Reads from the same local SwiftData store
+- Fully offline and privacy-safe
 
 ---
 
@@ -91,6 +102,14 @@ These were deliberate scope constraints for the project.
   Launch · Register · Main
 </p>
 
+
+---
+
+### Lock Screen Widget
+<p align="leading">
+  <img src="Intake/Screenshots/LockScreenWidgets.png" width="24%" />
+</p>
+
 ---
 
 ## Motivation
@@ -107,4 +126,3 @@ This project was created to practice:
 
 - iPad layout support
 - Trend comparison over longer time ranges
-- Widget support
