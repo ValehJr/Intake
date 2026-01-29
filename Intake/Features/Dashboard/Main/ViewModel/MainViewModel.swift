@@ -14,18 +14,17 @@ import WidgetKit
 final class MainViewModel: ObservableObject {
     @Published var user: UserEntity
     @Published var smokingCounts: [Date: Int] = [:]
+    @Published var now: Date = Date()
     
     let context: ModelContext
     
     var hourRange: [Date] {
-        let now = Date()
-        return (-2...2).compactMap { offset in
+        (-2...2).compactMap { offset in
             Calendar.current.date(byAdding: .hour, value: offset, to: now)
         }
     }
     
     var dayRange: [Date] {
-        let now = Date()
         return (-15...15).compactMap { offset in
             Calendar.current.date(byAdding: .day, value: offset, to: now)
         }
@@ -85,7 +84,7 @@ final class MainViewModel: ObservableObject {
     }
     
     func countForToday() -> Int {
-        let today = Calendar.current.startOfDay(for: Date())
+        let today = Calendar.current.startOfDay(for: now)
         return smokingCounts[today] ?? 0
     }
 }

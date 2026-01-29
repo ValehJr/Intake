@@ -19,17 +19,23 @@ struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), count: 0)
     }
-
+    
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(date: Date(), count: fetchCount())
         completion(entry)
     }
-
+    
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let currentDate = Date()
         let count = fetchCount()
-        let entry = SimpleEntry(date: Date(), count: count)
         
-        let timeline = Timeline(entries: [entry], policy: .never)
+        let entry = SimpleEntry(date: currentDate, count: count)
+        
+        let calendar = Calendar.current
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: currentDate))!
+        
+        let timeline = Timeline(entries: [entry], policy: .after(tomorrow))
+        
         completion(timeline)
     }
     
@@ -60,7 +66,7 @@ struct Provider: TimelineProvider {
 struct LockScreen_WidgetsEntryView : View {
     @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
-
+    
     var body: some View {
         switch widgetFamily {
         case .accessoryCircular:
@@ -108,13 +114,13 @@ struct LockScreen_WidgetsEntryView : View {
             }
             .buttonStyle(.plain)
         }
-
+        
     }
 }
 
 struct LockScreen_Widgets: Widget {
     let kind: String = "LockScreen_Widgets"
-
+    
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {

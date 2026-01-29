@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import Combine
 
 
 struct MainView: View {
     @StateObject var vm: MainViewModel
     @AppStorage("isDarkMode") private var isDarkMode = false
     @Environment(\.scenePhase) private var scenePhase
+    
+    @State private var now = Date()
+
+    private let timer = Timer.publish(
+        every: 60,
+        on: .main,
+        in: .common
+    ).autoconnect()
     
     var body: some View {
         ZStack {
@@ -42,6 +51,10 @@ struct MainView: View {
             if newPhase == .active {
                 vm.reloadUserData()
             }
+        }
+        .onReceive(timer) { newDate in 
+            now = newDate
+            vm.now = newDate
         }
         
     }
