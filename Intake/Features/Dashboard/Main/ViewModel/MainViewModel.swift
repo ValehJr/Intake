@@ -108,7 +108,7 @@ extension MainViewModel {
         let now = Date()
         let calendar = Calendar.current
         
-        guard let sevenDaysAgo = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: now)) else {
+        guard let sevenDaysAgo = calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: now)) else {
             return 0.0
         }
         
